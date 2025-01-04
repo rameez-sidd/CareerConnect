@@ -31,7 +31,7 @@ const Profile = () => {
                 </Avatar>
               </div>
               <div className="flex flex-col gap-3 md:gap-1">
-                <h1 className="font-bold text-4xl">{user?.fullName}</h1>
+                <h1 className="font-bold text-4xl text-center">{user?.fullName}</h1>
                 {
                   user?.profile?.bio &&
                   <p className="text-justify">{user?.profile?.bio}</p> 
