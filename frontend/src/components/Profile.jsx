@@ -23,7 +23,7 @@ const Profile = () => {
 
        
         <div className="bg-white flex flex-col gap-6 rounded-md border border-gray-300 shadow-md px-5 py-8 sm:px-7 md:px-8 lg:p-8 ">
-          <div className="flex items-center justify-between relative">
+          <div className="flex items-center justify-center md:justify-between relative">
             <div className="flex flex-col text-center md:flex-row md:text-left items-center gap-7 md:mr-6">
               <div>
                 <Avatar className="h-44 w-44">
