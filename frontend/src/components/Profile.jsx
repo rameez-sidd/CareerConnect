@@ -9,11 +9,19 @@ import AppliedJobsTable from "./AppliedJobsTable";
 import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
 import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
+import { useNavigate } from "react-router-dom"
 
 const Profile = () => {
   useGetAppliedJobs()
   const [open, setOpen] = useState(false);
   const { user } = useSelector((store) => store.auth);
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+          if(user === null || user.role === 'recruiter'){
+              navigate('/')
+          }
+      }, [])
 
   return (
     
