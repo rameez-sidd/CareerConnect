@@ -24,7 +24,7 @@ const HeroSection = () => {
     navigate('/browse')
   }
   return (
-    <div className="bg-[radial-gradient(circle,_#3b82f6,_#1e40af,_#1e3a8a)] grid place-items-center py-20 xs:py-32 sm:py-44">
+    <div className="bg-[radial-gradient(circle,_#3b82f6,_#1e40af,_#1e3a8a)] grid place-items-center pt-20 pb-24 xs:py-32 sm:py-44">
       <div className="flex flex-col gap-3 text-white  max-w-3xl px-6 md:px-5 lg:px-0 ">
         <h1 className="font-bold text-white text-6xl text-left sm:text-center leading-[70px] ">
           Explore, Apply, and
@@ -35,7 +35,7 @@ const HeroSection = () => {
           enhance your chances of landing the perfect role with a professional
           resume and smart search filters
         </p>
-        <div className="flex mt-6 bg-black rounded-full items-stretch sm:mx-10 lg:mx-20" style={{boxShadow: '0 2px 8px 3px rgba(0, 0, 0, 0.3)'}}>
+        <div className="flex mt-4 bg-black rounded-full items-stretch sm:mx-10 lg:mx-20" style={{boxShadow: '0 2px 8px 3px rgba(0, 0, 0, 0.3)'}}>
           <input
             className="w-full rounded-tl-full rounded-bl-full text-black outline-none px-4 py-2"
             type="search"
