@@ -5,6 +5,7 @@ import JobCard from "./JobCard";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchedQuery } from "@/redux/jobSlice";
 import FilterPopover from "./FilterPopover";
+import Fuse from 'fuse.js'
 
 const Jobs = () => {
   const {allJobs, searchedQuery} = useSelector(store=>store.job)
@@ -15,18 +16,26 @@ const Jobs = () => {
     dispatch(setSearchedQuery(''))
   },[])
 
+  const fuseOptions = {
+    keys: ["title", "description", "location"], // Fields to search
+    threshold: 0.4, // Adjust based on matching flexibility
+  };
+
   useEffect(()=>{
     
-    if(searchedQuery){
-      const filteredJobs = allJobs.filter((job)=>{
-        return job.title.toLowerCase().includes(searchedQuery.toLowerCase()) ||
-        job.description.toLowerCase().includes(searchedQuery.toLowerCase()) ||
-        job.location.toLowerCase().includes(searchedQuery.toLowerCase()) 
-      })  
-      setFilteredJobs(filteredJobs)
-    } else{
-      setFilteredJobs(allJobs)
+    if (searchedQuery) {
+      const fuse = new Fuse(allJobs, fuseOptions);
+
+      // Perform fuzzy search
+      const results = fuse.search(searchedQuery);
+
+      // Map results back to original job objects
+      setFilteredJobs(results.map((result) => result.item));
+    } else {
+      // Reset to all jobs if no search query
+      setFilteredJobs(allJobs);
     }
+    
     
   }, [allJobs, searchedQuery])
 

@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 const filterData = [
   {
     filterType: "Location",
-    array: ["Delhi", "Bangalore", "Hyderabad", "Pune", "Mumbai"],
+    array: ["Delhi", "Bengaluru", "Hyderabad", "Pune", "Mumbai"],
   },
   {
     filterType: "Industry",
