@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearchedQuery } from "@/redux/jobSlice";
 import FilterPopover from "./FilterPopover";
 import Fuse from 'fuse.js'
+import useGetAllJobs from "@/hooks/useGetAllJobs";
 
 const Jobs = () => {
+  useGetAllJobs()
   const {allJobs, searchedQuery} = useSelector(store=>store.job)
   const [filteredJobs, setFilteredJobs] = useState(allJobs)
   const dispatch = useDispatch()

@@ -19,6 +19,10 @@ const Home = () => {
       navigate('/admin/companies')
     } 
   })
+
+   useEffect(()=>{
+      dispatch(setSearchedQuery(''))
+    },[])
   
   
   return (

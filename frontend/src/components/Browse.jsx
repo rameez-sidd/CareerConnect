@@ -3,14 +3,14 @@ import Navbar from "./shared/Navbar";
 import JobCard from "./JobCard";
 import { Ban, Search } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { setAllJobs, setSearchedQuery } from "@/redux/jobSlice";
-import useGetJobsByQuery from "@/hooks/useGetJobsByQuery";
-import axios from "axios";
-import { JOB_API_ENDPOINT } from "@/utils/constant";
+import {setSearchedQuery } from "@/redux/jobSlice";
+import Fuse from 'fuse.js'
+import useGetAllJobs from "@/hooks/useGetAllJobs";
 
 const Browse = () => {
-  useGetJobsByQuery();
+  useGetAllJobs()
   const { allJobs, searchedQuery } = useSelector((store) => store.job);
+  const [filteredJobs, setFilteredJobs] = useState(allJobs)
   const dispatch = useDispatch();
   const buttonRef = useRef(null);
 
@@ -21,28 +21,47 @@ const Browse = () => {
     }
   };
 
+  const fuseOptions = {
+    keys: ["title", "description", "location"], // Fields to search
+    threshold: 0.4, // Adjust based on matching flexibility
+  };
 
   useEffect(()=>{
-    const fetchAllJobs = async ()=> {
-      try {
-          const res = await axios.get(`${JOB_API_ENDPOINT}/get?keyword=${searchedQuery}`, {withCredentials: true})
-          if(res.data.success){
-              dispatch(setAllJobs(res.data.jobs))
-          }
-      } catch (error) {
-          console.log(error);
+    
+    if (searchedQuery) {
+      const fuse = new Fuse(allJobs, fuseOptions);
+
+      // Perform fuzzy search
+      const results = fuse.search(searchedQuery);
+
+      // Map results back to original job objects
+      setFilteredJobs(results.map((result) => result.item));
+    } else {
+      // Reset to all jobs if no search query
+      setFilteredJobs(allJobs);
+    }
+    
+    
+  }, [allJobs, searchedQuery])
+
+
+  // useEffect(()=>{
+  //   const fetchAllJobs = async ()=> {
+  //     try {
+  //         const res = await axios.get(`${JOB_API_ENDPOINT}/get?keyword=${searchedQuery}`, {withCredentials: true})
+  //         if(res.data.success){
+  //             dispatch(setAllJobs(res.data.jobs))
+  //         }
+  //     } catch (error) {
+  //         console.log(error);
           
-      }
-  }
-  fetchAllJobs()
-  }, [searchedQuery])
+  //     }
+  // }
+  // fetchAllJobs()
+  // }, [searchedQuery])
 
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(setSearchedQuery(""));
-  //   };
-  // }, []);
+  
   return (
     <div>
       <Navbar />
@@ -60,13 +79,13 @@ const Browse = () => {
             
           </div>
         </div>
-        <h1>Search Results ({allJobs.length})</h1>
-        {allJobs.length <= 0 ? (
+        <h1>Search Results ({filteredJobs.length})</h1>
+        {filteredJobs.length <= 0 ? (
           <p className="text-sm text-gray-500">No Jobs Found !!!
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {allJobs.map((job) => (
+            {filteredJobs.map((job) => (
               <JobCard key={job._id} job={job} />
             ))}
           </div>
