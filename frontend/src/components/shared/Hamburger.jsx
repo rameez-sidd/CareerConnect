@@ -9,6 +9,8 @@ import axios from "axios";
 import { USER_API_ENDPOINT } from "@/utils/constant";
 import { toast } from "react-toastify";
 import { setUser } from "@/redux/authSlice";
+import { setAllAdminJobs, setAllAppliedJobs } from "@/redux/jobSlice";
+import { setCompanies } from "@/redux/companySlice";
 
 const Hamburger = () => {
   const { user } = useSelector((store) => store.auth);
