@@ -16,6 +16,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { setUser } from "@/redux/authSlice";
 import Hamburger from "./Hamburger";
+import { setAllAdminJobs, setAllAppliedJobs } from "@/redux/jobSlice";
+import { setCompanies } from "@/redux/companySlice";
+
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
