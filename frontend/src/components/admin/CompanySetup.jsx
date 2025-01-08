@@ -8,8 +8,9 @@ import axios from "axios";
 import { COMPANY_API_ENDPOINT } from "@/utils/constant";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useGetCompanyById from "@/hooks/useGetCompanyById";
+import { setSingleCompany } from "@/redux/companySlice";
 
 const CompanySetup = () => {
   const params = useParams();
@@ -17,6 +18,7 @@ const CompanySetup = () => {
   const [loading, setLoading] = useState(false);
   const {singleCompany} = useSelector(store=>store.company)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [input, setInput] = useState({
     name: "",
     description: "",
