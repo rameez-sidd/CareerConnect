@@ -29,6 +29,9 @@ const Navbar = () => {
       });
       if (res.data.success) {
         dispatch(setUser(null));
+        dispatch(setAllAppliedJobs([]))
+        dispatch(setCompanies([]))
+        dispatch(setAllAdminJobs([]))
         navigate("/");
         toast.success(res.data.message);
       }

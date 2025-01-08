@@ -69,12 +69,18 @@ const CompanySetup = () => {
   };
 
   useEffect(()=> {
+    return () => {
+      dispatch(setSingleCompany(null))
+    };
+  }, [])
+
+  useEffect(()=> {
     setInput({
-      name: singleCompany.name || "",
-      description: singleCompany.description || "",
-      website: singleCompany.website || "",
-      location: singleCompany.location || "",
-      logo: singleCompany.file || null,
+      name: singleCompany?.name || "",
+      description: singleCompany?.description || "",
+      website: singleCompany?.website || "",
+      location: singleCompany?.location || "",
+      logo: singleCompany?.file || null,
     })
   }, [singleCompany])
 

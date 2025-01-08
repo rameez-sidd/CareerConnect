@@ -89,3 +89,14 @@
 .jobs::-webkit-scrollbar-thumb:hover {
   background: #c3c3c3; /* Darker gray on hover */
 }
+
+@media (max-width: 640px) { /* Tailwind's default 'sm' breakpoint */
+  .scrollbar-hide-sm {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  .scrollbar-hide-sm::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+}

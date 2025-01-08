@@ -35,6 +35,12 @@ const JobDescription = () => {
         fetchSingleJob()
     }, [jobId, dispatch, user?._id])
 
+    useEffect(()=>{
+      return () => {
+        dispatch(setSingleJob(null))
+      };
+    }, [])
+
     const applyJob = async () => {
         if(user === null){
           navigate('/signup')

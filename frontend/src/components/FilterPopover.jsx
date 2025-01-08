@@ -82,7 +82,7 @@ const FilterPopover = () => {
       </Popover>
       <Button
         variant="link"
-        className="text-sm text-blue-500"
+        className="text-sm text-blue-500 px-2"
         onClick={() => handleChange("")}
       >
         Reset

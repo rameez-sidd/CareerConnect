@@ -28,6 +28,10 @@ const Applicants = () => {
             }
         }
         fetchAllApplicants()
+
+        return () => {
+            dispatch(setApplicants([]))
+          };
     }, [])
 
 

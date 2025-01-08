@@ -30,10 +30,10 @@ const HeroSection = () => {
           Explore, Apply, and
           Make Your Career Shine.
         </h1>
-        <p className="text-left sm:text-center sm:mx-8 md:mx-5 lg:mx-0 text-lg">
+        <p className="text-left sm:text-center sm:mx-8 md:mx-5 lg:mx-0 text-md sm:text-lg">
           Search through countless job openings, refine your preferences, and
           enhance your chances of landing the perfect role with a professional
-          resume and smart search filters
+          resume and smart search filters.
         </p>
         <div className="flex mt-4 sm:mt-6 bg-black rounded-full items-stretch sm:mx-10 lg:mx-20" style={{boxShadow: '0 2px 8px 3px rgba(0, 0, 0, 0.3)'}}>
           <input
